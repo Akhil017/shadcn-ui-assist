@@ -2,6 +2,7 @@ import * as vscode from "vscode";
 import * as fs from "fs";
 import * as path from "path";
 import * as os from "os";
+import { commands } from "./commands";
 
 const shadcnInstallWIthTw: Record<string, string> = {
   npm: "npm install -D tailwindcss postcss autoprefixer && npx tailwindcss init -p && npx shadcn-ui@latest init",
@@ -16,6 +17,20 @@ const shadcnInstall: Record<string, string> = {
   yarn: "npx shadcn-ui@latest init",
   bun: "bunx --bun shadcn-ui@latest init",
 };
+
+const addComponentCommand = "npx shadcn-ui@latest add ";
+
+function getRootPath() {
+  const workspaceFolders = vscode.workspace.workspaceFolders;
+  if (!workspaceFolders) {
+    vscode.window.showErrorMessage("There is no folder present");
+    return;
+  }
+
+  //get the packgage.json path
+  const rootPath = workspaceFolders[0].uri.fsPath;
+  return rootPath;
+}
 
 //get the packagemanager
 function getPackageManager(rootPath: string) {
@@ -61,15 +76,10 @@ export function activate(context: vscode.ExtensionContext) {
   const disposable = vscode.commands.registerCommand(
     "shadcn-ui-assist.installShadcn",
     () => {
-      const workspaceFolders = vscode.workspace.workspaceFolders;
-      if (!workspaceFolders) {
-        vscode.window.showErrorMessage("There is no folder present");
-        return;
-      }
-
       //get the packgage.json path
-      const rootPath = workspaceFolders[0].uri.fsPath;
-      const packageJsonPath = path.join(rootPath, "package.json");
+      const rootPath = getRootPath();
+
+      const packageJsonPath = path.join(rootPath!, "package.json");
 
       // if no package.json then early return
       if (!fs.existsSync(packageJsonPath)) {
@@ -79,7 +89,7 @@ export function activate(context: vscode.ExtensionContext) {
         return;
       }
 
-      const packageManager = getPackageManager(rootPath);
+      const packageManager = getPackageManager(rootPath!);
       const isTailwindInstalled = checkIfTailwindInstalled(packageJsonPath);
       let command = "";
       if (isTailwindInstalled) {
@@ -101,7 +111,29 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
 
+  const componentDisposable = commands.map((item) =>
+    vscode.commands.registerCommand(item.command, () => {
+      const rootPath = getRootPath();
+      const packageManger = getPackageManager(rootPath!);
+      let command = `${addComponentCommand}${item.component}`;
+
+      if (packageManger === "pnpm") {
+        command = command.replace("npx", "pnpm dlx");
+      } else if (packageManger === "bun") {
+        command = command.replace("npx", "bunx --bun");
+      }
+      console.log({ command });
+      // open new terminal
+      const terminal = vscode.window.createTerminal(`Shadcn Ui Assist`);
+      terminal.show();
+      terminal.sendText(command);
+    })
+  );
+
+  console.log({ componentDisposable });
+
   context.subscriptions.push(disposable);
+  context.subscriptions.push(...componentDisposable);
 }
 
 // This method is called when your extension is deactivated

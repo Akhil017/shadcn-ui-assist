@@ -16,6 +16,150 @@
       {
         "command": "shadcn-ui-assist.installShadcn",
         "title": "Install Shadcn"
+      },
+      {
+        "command": "shadcn-ui-assist.addAccordion",
+        "title": "add shadcn accordion"
+      },
+      {
+        "command": "shadcn-ui-assist.addAlert",
+        "title": "add shadcn alert"
+      },
+      {
+        "command": "shadcn-ui-assist.addAlertDialog",
+        "title": "add shadcn alert-dialog"
+      },
+      {
+        "command": "shadcn-ui-assist.addAspectRatio",
+        "title": "add shadcn aspect-ratio"
+      },
+      {
+        "command": "shadcn-ui-assist.addAvatar",
+        "title": "add shadcn avatar"
+      },
+      {
+        "command": "shadcn-ui-assist.addBadge",
+        "title": "add shadcn badge"
+      },
+      {
+        "command": "shadcn-ui-assist.addButton",
+        "title": "add shadcn button"
+      },
+      {
+        "command": "shadcn-ui-assist.addCalendar",
+        "title": "add shadcn calendar"
+      },
+      {
+        "command": "shadcn-ui-assist.addCard",
+        "title": "add shadcn card"
+      },
+      {
+        "command": "shadcn-ui-assist.addCheckbox",
+        "title": "add shadcn checkbox"
+      },
+      {
+        "command": "shadcn-ui-assist.addCollapsible",
+        "title": "add shadcn collapsible"
+      },
+      {
+        "command": "shadcn-ui-assist.addCommand",
+        "title": "add shadcn command"
+      },
+      {
+        "command": "shadcn-ui-assist.addContextMenu",
+        "title": "add shadcn context-menu"
+      },
+      {
+        "command": "shadcn-ui-assist.addDialog",
+        "title": "add shadcn dialog"
+      },
+      {
+        "command": "shadcn-ui-assist.addDropdownMenu",
+        "title": "add shadcn dropdown-menu"
+      },
+      {
+        "command": "shadcn-ui-assist.addHoverCard",
+        "title": "add shadcn hover-card"
+      },
+      {
+        "command": "shadcn-ui-assist.addInput",
+        "title": "add shadcn input"
+      },
+      {
+        "command": "shadcn-ui-assist.addLabel",
+        "title": "add shadcn label"
+      },
+      {
+        "command": "shadcn-ui-assist.addMenubar",
+        "title": "add shadcn menubar"
+      },
+      {
+        "command": "shadcn-ui-assist.addNavigationMenu",
+        "title": "add shadcn navigation-menu"
+      },
+      {
+        "command": "shadcn-ui-assist.addPopover",
+        "title": "add shadcn popover"
+      },
+      {
+        "command": "shadcn-ui-assist.addprogress",
+        "title": "add shadcn progress"
+      },
+      {
+        "command": "shadcn-ui-assist.addRadioGroup",
+        "title": "add shadcn radio-group"
+      },
+      {
+        "command": "shadcn-ui-assist.addScrollArea",
+        "title": "add shadcn scroll-area"
+      },
+      {
+        "command": "shadcn-ui-assist.addSeparator",
+        "title": "add shadcn separator"
+      },
+      {
+        "command": "shadcn-ui-assist.addSheet",
+        "title": "add shadcn sheet"
+      },
+      {
+        "command": "shadcn-ui-assist.addSkelton",
+        "title": "add shadcn skeleton"
+      },
+      {
+        "command": "shadcn-ui-assist.addSlider",
+        "title": "add shadcn slider"
+      },
+      {
+        "command": "shadcn-ui-assist.addSwitch",
+        "title": "add shadcn switch"
+      },
+      {
+        "command": "shadcn-ui-assist.addTable",
+        "title": "add shadcn table"
+      },
+      {
+        "command": "shadcn-ui-assist.addTabs",
+        "title": "add shadcn tabs"
+      },
+      {
+        "command": "shadcn-ui-assist.addTextarea",
+        "title": "add shadcn textarea"
+      },
+      {
+        "command": "shadcn-ui-assist.addToast",
+        "title": "add shadcn toast"
+      },
+      {
+        "command": "shadcn-ui-assist.addToggle",
+        "title": "add shadcn toggle"
+      },
+      {
+        "command": "shadcn-ui-assist.addToggleGroup",
+        "title": "add shadcn toggle-group"
+      },
+      {
+        "command": "shadcn-ui-assist.addTooltip",
+        "title": "add shadcn tooltip"
       }
     ]
   },
