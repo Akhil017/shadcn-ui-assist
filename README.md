@@ -1,71 +1,68 @@
-# shadcn-ui-assist README
+# Shadcn/UI Assist
 
-This is the README for your extension "shadcn-ui-assist". After writing up a brief description, we recommend including the following sections.
+Shadcn UI Assist is a Visual Studio Code extension that simplifies the process of installing Shadcn UI components and integrating them with Tailwind CSS in your projects. This extension automatically detects your package manager and executes the appropriate commands to install Shadcn UI and its dependencies. Additionally, it allows you to easily add Shadcn UI components to your project through the command palette.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- Install Shadcn UI: Automatically install Shadcn UI along with Tailwind CSS and its required dependencies.
+- Add Shadcn UI Components: Quickly add pre-defined Shadcn UI components to your project with a single command.
+- Package Manager Detection: Detects your project's package manager (npm, yarn, pnpm, or bun) and runs the appropriate commands.
 
-For example if there is an image subfolder under your extension project workspace:
+## Installation
 
-\!\[feature X\]\(images/feature-x.png\)
+1. Download & Install: Install the extension from the Visual Studio Code Marketplace.
+2. Open a Project: Open your project folder in VS Code.
+3. Run Commands: Use the command palette to run the extension commands
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+## Usage
+
+Once you setup the framework of your choice follow the below steps.
+
+### 1. Install Shadcn UI.
+
+To install Shadcn UI in your project, open the command palette (Ctrl+Shift+P or Cmd+Shift+P on macOS) and type:
+
+```bash
+Install Shadcn
+```
+
+### 2. Add Shadcn UI Components
+
+You can add components by using the following steps:
+
+1. Open the command palette (Ctrl+Shift+P or Cmd+Shift+P on macOS).
+2. Search for the command corresponding to the Shadcn UI component you want to add. For example
+
+```bash
+add shadcn button
+```
+
+3. Select the command, and the component will be added to your project.
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+- Visual Studio Code version 1.60.0 or higher.
+- A project with a package.json file in the root directory.
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+This extension does not require any configuration. It automatically detects the package manager and project setup.
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+- If the project does not contain a package.json file, the installation process will fail.
+- Ensure that your terminal can execute npm, yarn, pnpm, or bun commands as needed.
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+- Initial release of Shadcn UI Assist.
+- Added support for installing Shadcn UI and Tailwind CSS.
+- Enabled adding Shadcn UI components via the command palette.
 
-### 1.0.0
+## Contributing
 
-Initial release of ...
+If you'd like to contribute to this extension, please submit a pull request or file an issue on [GitHub](https://github.com/Akhil017/shadcn-ui-assist).
 
-### 1.0.1
+## License
 
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+This project is licensed under the MIT License.
