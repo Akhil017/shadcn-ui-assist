@@ -3,6 +3,52 @@ import * as fs from "fs";
 import * as path from "path";
 import * as os from "os";
 
+const shadcnInstallWIthTw: Record<string, string> = {
+  npm: "npm install -D tailwindcss postcss autoprefixer && npx tailwindcss init -p && npx shadcn-ui@latest init",
+  pnpm: "pnpm install -D tailwindcss postcss autoprefixer && pnpm dlx tailwindcss init -p && pnpm dlx shadcn-ui@latest init",
+  yarn: "yarn add -D tailwindcss postcss autoprefixer && yarn tailwindcss init -p && npx shadcn-ui@latest init",
+  bun: "bun install -D tailwindcss && bunx tailwindcss init && bunx --bun shadcn-ui@latest init",
+};
+
+const shadcnInstall: Record<string, string> = {
+  npm: "npx shadcn-ui@latest init",
+  pnpm: "pnpm dlx shadcn-ui@latest init",
+  yarn: "npx shadcn-ui@latest init",
+  bun: "bunx --bun shadcn-ui@latest init",
+};
+
+//get the packagemanager
+function getPackageManager(rootPath: string) {
+  const lockFiles = {
+    npm: "package-lock.json",
+    yarn: "yarn.lock",
+    pnpm: "pnpm-lock.yaml",
+    bun: "bun.lockb",
+  };
+
+  let detectedPackageManager = "";
+
+  for (const [manager, lockFile] of Object.entries(lockFiles)) {
+    const filePath = path.join(rootPath, lockFile);
+    if (fs.existsSync(filePath)) {
+      detectedPackageManager = manager;
+      break;
+    }
+  }
+
+  return detectedPackageManager;
+}
+
+function checkIfTailwindInstalled(packageJsonPath: string) {
+  // check if tailwind exist as a dependency
+  const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf-8"));
+  const hasTailwind =
+    packageJson.dependencies?.["tailwindcss"] ||
+    packageJson.devDependencies?.["tailwindcss"];
+
+  return hasTailwind;
+}
+
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
@@ -30,25 +76,19 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.window.showErrorMessage(
           "No package.json found in the root folder."
         );
+        return;
       }
 
-      // check if tailwind exist as a dependency
-      const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf-8"));
-      const hasTailwind =
-        packageJson.dependencies?.["tailwindcss"] ||
-        packageJson.devDependencies?.["tailwindcss"];
-
+      const packageManager = getPackageManager(rootPath);
+      const isTailwindInstalled = checkIfTailwindInstalled(packageJsonPath);
       let command = "";
-      if (hasTailwind) {
-        command = "pnpm dlx shadcn-ui@latest init";
+      if (isTailwindInstalled) {
+        command = shadcnInstall[packageManager];
       } else {
+        command = shadcnInstallWIthTw[packageManager];
         const platform = os.platform();
         if (platform === "win32") {
-          command =
-            "pnpm install -D tailwindcss postcss autoprefixer ; pnpm dlx tailwindcss init -p ; pnpm dlx shadcn-ui@latest init";
-        } else {
-          command =
-            "pnpm install -D tailwindcss postcss autoprefixer && pnpm dlx tailwindcss init -p && pnpm dlx shadcn-ui@latest init";
+          command.replace("&&", ";");
         }
       }
 
