@@ -67,10 +67,6 @@ function checkIfTailwindInstalled(packageJsonPath: string) {
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-  console.log(
-    'Congratulations, your extension "shadcn-ui-assist" is now active!'
-  );
-
   // call the api and fetch component json
 
   const disposable = vscode.commands.registerCommand(
@@ -122,15 +118,13 @@ export function activate(context: vscode.ExtensionContext) {
       } else if (packageManger === "bun") {
         command = command.replace("npx", "bunx --bun");
       }
-      console.log({ command });
+
       // open new terminal
       const terminal = vscode.window.createTerminal(`Shadcn Ui Assist`);
       terminal.show();
       terminal.sendText(command);
     })
   );
-
-  console.log({ componentDisposable });
 
   context.subscriptions.push(disposable);
   context.subscriptions.push(...componentDisposable);
