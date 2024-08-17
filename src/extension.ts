@@ -1,6 +1,7 @@
 import * as vscode from "vscode";
 import * as fs from "fs";
 import * as path from "path";
+import * as os from "os";
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -41,8 +42,14 @@ export function activate(context: vscode.ExtensionContext) {
       if (hasTailwind) {
         command = "pnpm dlx shadcn-ui@latest init";
       } else {
-        command =
-          "pnpm install -D tailwindcss postcss autoprefixer && pnpm dlx tailwindcss init -p && pnpm dlx shadcn-ui@latest init";
+        const platform = os.platform();
+        if (platform === "win32") {
+          command =
+            "pnpm install -D tailwindcss postcss autoprefixer ; pnpm dlx tailwindcss init -p ; pnpm dlx shadcn-ui@latest init";
+        } else {
+          command =
+            "pnpm install -D tailwindcss postcss autoprefixer && pnpm dlx tailwindcss init -p && pnpm dlx shadcn-ui@latest init";
+        }
       }
 
       // open new terminal
