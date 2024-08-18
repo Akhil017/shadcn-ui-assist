@@ -7,7 +7,7 @@
   "icon": "icon.png",
   "repository": "https://github.com/Akhil017/shadcn-ui-assist",
   "engines": {
-    "vscode": "^1.92.0"
+    "vscode": "^1.6.0"
   },
   "categories": [
     "Other"
