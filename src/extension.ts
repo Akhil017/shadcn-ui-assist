@@ -64,6 +64,16 @@ function checkIfTailwindInstalled(packageJsonPath: string) {
   return hasTailwind;
 }
 
+function createTerminal() {
+  const terminalName = "Shadcn Ui Assist";
+  let terminal = vscode.window.terminals.find((t) => t.name === terminalName);
+  if (!terminal) {
+    terminal = vscode.window.createTerminal(terminalName);
+  }
+
+  return terminal;
+}
+
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
@@ -99,7 +109,7 @@ export function activate(context: vscode.ExtensionContext) {
       }
 
       // open new terminal
-      const terminal = vscode.window.createTerminal(`Shadcn Ui Assist`);
+      const terminal = createTerminal();
       terminal.show();
       terminal.sendText(command);
 
@@ -107,7 +117,7 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
 
-  const componentDisposable = commands.map((item) =>
+  const componentDisposables = commands.map((item) =>
     vscode.commands.registerCommand(item.command, () => {
       const rootPath = getRootPath();
       const packageManger = getPackageManager(rootPath!);
@@ -120,14 +130,14 @@ export function activate(context: vscode.ExtensionContext) {
       }
 
       // open new terminal
-      const terminal = vscode.window.createTerminal(`Shadcn Ui Assist`);
+      const terminal = createTerminal();
       terminal.show();
       terminal.sendText(command);
     })
   );
 
   context.subscriptions.push(disposable);
-  context.subscriptions.push(...componentDisposable);
+  context.subscriptions.push(...componentDisposables);
 }
 
 // This method is called when your extension is deactivated
