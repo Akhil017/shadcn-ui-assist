@@ -3,7 +3,7 @@
   "displayName": "Shadcn/UI Assist",
   "description": "Shadcn/UI Assist is your go-to VS Code extension for effortlessly integrating Shadcn UI components into your React projects. Whether you're building with Next.js or another React framework, this extension streamlines the process of installing and adding Shadcn components to your codebase.",
   "publisher": "Akhil017",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "icon": "icon.png",
   "repository": "https://github.com/Akhil017/shadcn-ui-assist",
   "engines": {
@@ -178,7 +178,7 @@
   "devDependencies": {
     "@types/mocha": "^10.0.7",
     "@types/node": "20.x",
-    "@types/vscode": "^1.92.0",
+    "@types/vscode": "^1.64.0",
     "@typescript-eslint/eslint-plugin": "^7.14.1",
     "@typescript-eslint/parser": "^7.11.0",
     "@vscode/test-cli": "^0.0.9",
